@@ -1,0 +1,40 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+
+option csharp_namespace = "GrpcClient";
+package customerLogon;
+
+service CustomerLogon{
+	rpc Logon (LogonRequest) returns (LogonResponse);
+}
+
+message LogonRequest {
+	reserved 1 to 5;
+	string user_name = 6;
+	string pass = 7;
+	string channel = 8;
+	map<string,string> client_infos = 9;
+	string extra_field = 50;
+}
+
+message LogonResponse {
+	reserved 1 to 5;
+	string token = 6;	
+	CustomerInfo customer_info = 7;
+	string extra_field = 50;
+}
+
+message CustomerInfo {
+	reserved 1 to 5;
+	string detail = 6;
+	google.protobuf.Timestamp last_update_date = 7;
+	repeated CustomerContract contacts = 8;
+}
+
+message CustomerContract{
+	reserved 1 to 5;
+	string contract = 6;
+	google.protobuf.Timestamp created = 7;
+}
