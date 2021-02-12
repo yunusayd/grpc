@@ -22,7 +22,7 @@ message LogonRequest {
 
 message LogonResponse {
 	reserved 1 to 5;
-	string token = 6 [default = "boş"];	
+	string token = 6;	
 	CustomerInfo customer_info = 7;
 	string extra_field = 50;
 }
